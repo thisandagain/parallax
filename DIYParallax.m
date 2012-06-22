@@ -10,8 +10,8 @@
 
 //
 
-#define UPDATE_INTERVAL 1.0f/60
-#define OFFSET_MULTIPLIER 75.0f
+#define UPDATE_INTERVAL 1.0f/90
+#define OFFSET_MULTIPLIER 60.0f
 
 //
 
