@@ -11,7 +11,14 @@
 //
 
 #define UPDATE_INTERVAL 1.0f/60
-#define DRIFT_MULTIPLIER 1.0f
+#define OFFSET_MULTIPLIER 75.0f
+
+//
+
+@interface DIYParallax ()
+@property (nonatomic, retain) CMMotionManager *motionManager;
+@property (nonatomic, retain) NSMutableArray *layers;
+@end
 
 //
 
@@ -30,8 +37,8 @@
         layers              = [[NSMutableArray alloc] init];
         
         // Init motion manager
-        motionManager       = [[CMMotionManager alloc] init];        
-        motionManager.gyroUpdateInterval = UPDATE_INTERVAL;
+        motionManager       = [[CMMotionManager alloc] init];
+        motionManager.deviceMotionUpdateInterval = UPDATE_INTERVAL;
     }
     
     return self;
@@ -65,45 +72,52 @@
 }
 
 /**
- * Start listening to gyro updates.
+ * Start listening to motion manager updates.
  *
  * @return  void
  */
-- (void)startListeningToGyro
+- (void)startListening
 {
-    if([self.motionManager isGyroAvailable])
+    if ([self.motionManager isDeviceMotionAvailable])
     {
-        [motionManager startGyroUpdatesToQueue:[NSOperationQueue currentQueue] withHandler: ^(CMGyroData *gyroData, NSError *error)
-         {
-             // Gather rotation rate
-             CMRotationRate rotate = gyroData.rotationRate;
-             
-             // Threshold
-             CGFloat x = rotate.x;
-             CGFloat y = rotate.y;
-             x = x < -0.2 || x > 0.2 ? x : 0;
-             y = y < -0.2 || y > 0.2 ? y : 0;
-             
-             // Update
-             if (x != 0 || y != 0)
-             {
-                 [self update:CGPointMake(x, y)];
-             }
-         }
-         ];
+        __block BOOL referenceSet       = false;
+        __block CGFloat referencePitch  = 0.0f;
+        __block CGFloat referenceRoll   = 0.0f;
+        //__block CGFloat referenceYaw    = 0.0f;
+        
+        [motionManager startDeviceMotionUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMDeviceMotion *motion, NSError *error) {
+            // Set reference angles
+            if (!referenceSet)
+            {
+                referencePitch  = [[motion attitude] pitch];
+                referenceRoll   = [[motion attitude] roll];
+                //referenceYaw    = [[motion attitude] yaw];
+                
+                referenceSet    = true;
+            }
+            
+            // Reference offset
+            CGFloat _pitch      = [[motion attitude] pitch] - referencePitch;
+            CGFloat _roll       = [[motion attitude] roll] - referenceRoll;
+            //CGFloat _yaw        = [[motion attitude] yaw] - referenceYaw;
+            
+            // Update
+            // @note Add orientation support here
+            [self update:CGPointMake(_pitch, -_roll)];
+        }];
     }
 }
 
 /**
- * Stops listening to the gyro.
+ * Stops listening to the motion manager.
  *
  * @return  void
  */
-- (void)stopListeningToGyro
+- (void)stopListening
 {
-    if([self.motionManager isGyroAvailable])
+    if ([self.motionManager isDeviceMotionAvailable])
     {
-        [motionManager stopGyroUpdates];
+        [motionManager stopDeviceMotionUpdates];
     }
     [motionManager release]; motionManager = nil;
 }
@@ -124,14 +138,27 @@
         // View
         UIView *view = [self.subviews objectAtIndex:i];
         
-        // Calc
+        // Calculate transformation
         CGFloat d = [[layers objectAtIndex:i] floatValue];
-        CGFloat x = view.bounds.origin.x + (point.x * d * DRIFT_MULTIPLIER);
-        CGFloat y = view.bounds.origin.y - (point.y * d * DRIFT_MULTIPLIER);
+        CGFloat x = [self calculateTransformForAngle:point.x withDistance:d];
+        CGFloat y = [self calculateTransformForAngle:point.y withDistance:d];
         
         // Translate
-        view.transform = CGAffineTransformTranslate(view.transform, x, y);
+        view.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, OFFSET_MULTIPLIER * x, OFFSET_MULTIPLIER * y);
     }
+}
+
+/**
+ * Calculates a transform using euler angle input and object distance.
+ *
+ * @param  CGFloat  Euler angle (radians)
+ * @param  CGFloat  Distance
+ *
+ * @return  CGFloat
+ */
+- (double)calculateTransformForAngle:(double)angle withDistance:(double)distance
+{
+    return angle * distance;
 }
 
 #pragma mark - Dealloc

@@ -10,12 +10,13 @@
 #import <CoreMotion/CoreMotion.h>
 
 @interface DIYParallax : UIView <UIAccelerometerDelegate>
-
-@property (nonatomic, retain) NSMutableArray *layers;
-@property (nonatomic, retain) CMMotionManager *motionManager;
+{
+    @private CMMotionManager *motionManager;
+    @private NSMutableArray *layers;
+}
 
 - (void)addLayer:(CGFloat)depth imageNamed:(NSString *)asset frame:(CGRect)frame;
-- (void)startListeningToGyro;
-- (void)stopListeningToGyro;
+- (void)startListening;
+- (void)stopListening;
 
 @end

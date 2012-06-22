@@ -28,15 +28,22 @@
 {
     [super viewDidAppear:animated];
     
-    [parallax startListeningToGyro];
+    [parallax startListening];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    [parallax stopListening];
 }
 ````
 
 ## Public Methods
 ```
 - (void)addLayer:(CGFloat)depth imageNamed:(NSString *)asset frame:(CGRect)frame;
-- (void)startListeningToGyro;
-- (void)stopListeningToGyro;
+- (void)startListening;
+- (void)stopListening;
 ```
 
 ## Properties

@@ -39,7 +39,14 @@
 {
     [super viewDidAppear:animated];
     
-    [parallax startListeningToGyro];
+    [parallax startListening];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    [parallax stopListening];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -51,7 +58,7 @@
 
 - (void)releaseObjects
 {
-    [parallax stopListeningToGyro];
+    [parallax stopListening];
     [parallax release]; parallax = nil;
 }
 
