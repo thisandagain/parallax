@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Parallax : Objective-C library for implementation of CoreMotion-controlled parallax distortion." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Parallax</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/thisandagain/parallax">View on GitHub</a>
+
+          <h1 id="project_title">Parallax</h1>
+          <h2 id="project_tagline">Objective-C library for implementation of CoreMotion-controlled parallax distortion.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/thisandagain/parallax/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/thisandagain/parallax/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>Objective-C library for simple implementation of CoreMotion-controlled parallax distortion.</h3>
+
+<h2>Installation</h2>
+
+<ul>
+<li>Copy DIYParallax.h and DIYParallax.m into your project</li>
+<li>Add the "CoreMotion" framework to your project</li>
+</ul><h2>Getting Started</h2>
+
+<div class="highlight">
+<pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">viewDidLoad</span>
+<span class="p">{</span>
+    <span class="p">[</span><span class="n">super</span> <span class="n">viewDidLoad</span><span class="p">];</span>
+
+    <span class="c1">//</span>
+
+    <span class="n">parallax</span> <span class="o">=</span> <span class="p">[[</span><span class="n">DIYParallax</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithFrame:</span><span class="n">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">];</span>
+
+    <span class="p">[</span><span class="n">parallax</span> <span class="nl">addLayer:</span><span class="mf">0.0</span> <span class="nl">imageNamed:</span><span class="s">@"layer_1@2x.png"</span> <span class="nl">frame:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">480</span><span class="p">,</span> <span class="mi">320</span><span class="p">)];</span>
+    <span class="p">[</span><span class="n">parallax</span> <span class="nl">addLayer:</span><span class="mf">0.1</span> <span class="nl">imageNamed:</span><span class="s">@"layer_2@2x.png"</span> <span class="nl">frame:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="mi">240</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">320</span><span class="p">)];</span>
+    <span class="p">[</span><span class="n">parallax</span> <span class="nl">addLayer:</span><span class="mf">0.2</span> <span class="nl">imageNamed:</span><span class="s">@"layer_3@2x.png"</span> <span class="nl">frame:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="mi">240</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">160</span><span class="p">)];</span>
+    <span class="p">[</span><span class="n">parallax</span> <span class="nl">addLayer:</span><span class="mf">0.3</span> <span class="nl">imageNamed:</span><span class="s">@"layer_4@2x.png"</span> <span class="nl">frame:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">160</span><span class="p">)];</span>
+    <span class="p">[</span><span class="n">parallax</span> <span class="nl">addLayer:</span><span class="mf">0.8</span> <span class="nl">imageNamed:</span><span class="s">@"layer_5@2x.png"</span> <span class="nl">frame:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">160</span><span class="p">)];</span>
+
+    <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">addSubview:</span><span class="n">parallax</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">viewDidAppear:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">animated</span>
+<span class="p">{</span>
+    <span class="p">[</span><span class="n">super</span> <span class="nl">viewDidAppear:</span><span class="n">animated</span><span class="p">];</span>
+
+    <span class="p">[</span><span class="n">parallax</span> <span class="n">startListening</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">viewDidDisappear:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">animated</span>
+<span class="p">{</span>
+    <span class="p">[</span><span class="n">super</span> <span class="nl">viewDidDisappear:</span><span class="n">animated</span><span class="p">];</span>
+
+    <span class="p">[</span><span class="n">parallax</span> <span class="n">stopListening</span><span class="p">];</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+
+<h2>Public Methods</h2>
+
+<pre><code>- (void)addLayer:(CGFloat)depth imageNamed:(NSString *)asset frame:(CGRect)frame;
+- (void)startListening;
+- (void)stopListening;
+</code></pre>
+
+<h2>Properties</h2>
+
+<p>DIYParallax is a subclass of UIView, thus all properties and methods inherent to UIView can be applied. For more information, please check the <a href="https://developer.apple.com/library/ios/#documentation/uikit/reference/uiview_class/uiview/uiview.html">UIView class reference</a>.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Parallax maintained by <a href="https://github.com/thisandagain">thisandagain</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-33281153-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
