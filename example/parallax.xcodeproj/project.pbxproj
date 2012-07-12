@@ -15,7 +15,6 @@
 		C39B2D311579610A00BBEA55 /* DIYAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C39B2D301579610A00BBEA55 /* DIYAppDelegate.m */; };
 		C39B2D341579610A00BBEA55 /* DIYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C39B2D331579610A00BBEA55 /* DIYViewController.m */; };
 		C39B2D371579610A00BBEA55 /* DIYViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C39B2D351579610A00BBEA55 /* DIYViewController.xib */; };
-		C39B2D431579620B00BBEA55 /* DIYParallax.m in Sources */ = {isa = PBXBuildFile; fileRef = C39B2D421579620B00BBEA55 /* DIYParallax.m */; };
 		C39B2D461579623200BBEA55 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39B2D451579623200BBEA55 /* CoreMotion.framework */; };
 		C39B2D481579629D00BBEA55 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C39B2D471579629D00BBEA55 /* README.md */; };
 		C39B2D4A157962AC00BBEA55 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = C39B2D49157962AC00BBEA55 /* LICENSE.md */; };
@@ -24,6 +23,7 @@
 		C39B2D531579637800BBEA55 /* layer_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39B2D4E1579637800BBEA55 /* layer_3@2x.png */; };
 		C39B2D541579637800BBEA55 /* layer_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39B2D4F1579637800BBEA55 /* layer_4@2x.png */; };
 		C39B2D551579637800BBEA55 /* layer_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39B2D501579637800BBEA55 /* layer_5@2x.png */; };
+		DE7B1BC315AE8EDD0017E5D8 /* DIYParallax.m in Sources */ = {isa = PBXBuildFile; fileRef = DE7B1BC215AE8EDD0017E5D8 /* DIYParallax.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,8 +40,6 @@
 		C39B2D321579610A00BBEA55 /* DIYViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DIYViewController.h; sourceTree = "<group>"; };
 		C39B2D331579610A00BBEA55 /* DIYViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DIYViewController.m; sourceTree = "<group>"; };
 		C39B2D361579610A00BBEA55 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DIYViewController.xib; sourceTree = "<group>"; };
-		C39B2D411579620B00BBEA55 /* DIYParallax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DIYParallax.h; path = ../DIYParallax.h; sourceTree = "<group>"; };
-		C39B2D421579620B00BBEA55 /* DIYParallax.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DIYParallax.m; path = ../DIYParallax.m; sourceTree = "<group>"; };
 		C39B2D451579623200BBEA55 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		C39B2D471579629D00BBEA55 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C39B2D49157962AC00BBEA55 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE.md; path = ../LICENSE.md; sourceTree = "<group>"; };
@@ -50,6 +48,8 @@
 		C39B2D4E1579637800BBEA55 /* layer_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "layer_3@2x.png"; path = "images/layer_3@2x.png"; sourceTree = "<group>"; };
 		C39B2D4F1579637800BBEA55 /* layer_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "layer_4@2x.png"; path = "images/layer_4@2x.png"; sourceTree = "<group>"; };
 		C39B2D501579637800BBEA55 /* layer_5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "layer_5@2x.png"; path = "images/layer_5@2x.png"; sourceTree = "<group>"; };
+		DE7B1BC115AE8EDD0017E5D8 /* DIYParallax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIYParallax.h; sourceTree = "<group>"; };
+		DE7B1BC215AE8EDD0017E5D8 /* DIYParallax.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIYParallax.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,8 +70,7 @@
 		C39B2D111579610A00BBEA55 = {
 			isa = PBXGroup;
 			children = (
-				C39B2D411579620B00BBEA55 /* DIYParallax.h */,
-				C39B2D421579620B00BBEA55 /* DIYParallax.m */,
+				DE7B1BC015AE8EDD0017E5D8 /* DIYParallax */,
 				C39B2D471579629D00BBEA55 /* README.md */,
 				C39B2D49157962AC00BBEA55 /* LICENSE.md */,
 				C39B2D261579610A00BBEA55 /* parallax */,
@@ -134,6 +133,16 @@
 				C39B2D501579637800BBEA55 /* layer_5@2x.png */,
 			);
 			name = images;
+			sourceTree = "<group>";
+		};
+		DE7B1BC015AE8EDD0017E5D8 /* DIYParallax */ = {
+			isa = PBXGroup;
+			children = (
+				DE7B1BC115AE8EDD0017E5D8 /* DIYParallax.h */,
+				DE7B1BC215AE8EDD0017E5D8 /* DIYParallax.m */,
+			);
+			name = DIYParallax;
+			path = ../DIYParallax;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,7 +219,7 @@
 				C39B2D2D1579610A00BBEA55 /* main.m in Sources */,
 				C39B2D311579610A00BBEA55 /* DIYAppDelegate.m in Sources */,
 				C39B2D341579610A00BBEA55 /* DIYViewController.m in Sources */,
-				C39B2D431579620B00BBEA55 /* DIYParallax.m in Sources */,
+				DE7B1BC315AE8EDD0017E5D8 /* DIYParallax.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
