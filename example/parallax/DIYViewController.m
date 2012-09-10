@@ -56,22 +56,9 @@
 
 #pragma mark - Dealloc
 
-- (void)releaseObjects
-{
-    [parallax stopListening];
-    [parallax release]; parallax = nil;
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    [self releaseObjects];
-}
-
 - (void)dealloc
 {
-    [self releaseObjects];
-    [super dealloc];
+    [parallax stopListening];
 }
 
 @end

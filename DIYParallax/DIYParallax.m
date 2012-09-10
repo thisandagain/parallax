@@ -16,8 +16,8 @@
 //
 
 @interface DIYParallax ()
-@property (nonatomic, retain) CMMotionManager *motionManager;
-@property (nonatomic, retain) NSMutableArray *layers;
+@property (nonatomic, strong) CMMotionManager *motionManager;
+@property (nonatomic, strong) NSMutableArray *layers;
 @end
 
 //
@@ -67,8 +67,6 @@
     item.image              = image;
     [self insertSubview:item atIndex:[layers count] - 1];
     
-    [item release];
-    [image release];
 }
 
 /**
@@ -119,7 +117,7 @@
     {
         [motionManager stopDeviceMotionUpdates];
     }
-    [motionManager release]; motionManager = nil;
+     motionManager = nil;
 }
 
 #pragma mark - Private methods
@@ -159,20 +157,6 @@
 - (double)calculateTransformForAngle:(double)angle withDistance:(double)distance
 {
     return angle * distance;
-}
-
-#pragma mark - Dealloc
-
-- (void)releaseObjects
-{
-    [motionManager release]; motionManager = nil;
-    [layers release]; layers = nil;
-}
-
-- (void)dealloc
-{    
-    [self releaseObjects];
-    [super dealloc];
 }
 
 @end

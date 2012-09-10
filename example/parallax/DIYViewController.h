@@ -15,6 +15,6 @@
     
 }
 
-@property (nonatomic, retain) DIYParallax *parallax;
+@property (nonatomic, strong) DIYParallax *parallax;
 
 @end
