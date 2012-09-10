@@ -12,8 +12,8 @@
 
 @interface DIYAppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+@property (nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) DIYViewController *viewController;
+@property (nonatomic) DIYViewController *viewController;
 
 @end

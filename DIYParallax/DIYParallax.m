@@ -16,8 +16,8 @@
 //
 
 @interface DIYParallax ()
-@property (nonatomic, strong) CMMotionManager *motionManager;
-@property (nonatomic, strong) NSMutableArray *layers;
+@property CMMotionManager *motionManager;
+@property NSMutableArray *layers;
 @end
 
 //
