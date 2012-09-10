@@ -16,8 +16,8 @@
 //
 
 @interface DIYParallax ()
-@property (nonatomic, retain) CMMotionManager *motionManager;
-@property (nonatomic, retain) NSMutableArray *layers;
+@property CMMotionManager *motionManager;
+@property NSMutableArray *layers;
 @end
 
 //
@@ -67,8 +67,6 @@
     item.image              = image;
     [self insertSubview:item atIndex:[layers count] - 1];
     
-    [item release];
-    [image release];
 }
 
 /**
@@ -119,7 +117,7 @@
     {
         [motionManager stopDeviceMotionUpdates];
     }
-    [motionManager release]; motionManager = nil;
+     motionManager = nil;
 }
 
 #pragma mark - Private methods
@@ -163,16 +161,10 @@
 
 #pragma mark - Dealloc
 
-- (void)releaseObjects
-{
-    [motionManager release]; motionManager = nil;
-    [layers release]; layers = nil;
-}
-
 - (void)dealloc
 {    
-    [self releaseObjects];
-    [super dealloc];
+    motionManager = nil;
+    layers = nil;
 }
 
 @end
