@@ -159,4 +159,12 @@
     return angle * distance;
 }
 
+#pragma mark - Dealloc
+
+- (void)dealloc
+{    
+    motionManager = nil;
+    layers = nil;
+}
+
 @end
