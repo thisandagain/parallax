@@ -59,7 +59,7 @@
 - (void)releaseObjects
 {
     [parallax stopListening];
-    [parallax release]; parallax = nil;
+    parallax = nil;
 }
 
 - (void)viewDidUnload
@@ -71,7 +71,6 @@
 - (void)dealloc
 {
     [self releaseObjects];
-    [super dealloc];
 }
 
 @end

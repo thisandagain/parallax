@@ -291,6 +291,7 @@
 		C39B2D3B1579610A00BBEA55 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "parallax/parallax-Prefix.pch";
 				INFOPLIST_FILE = "parallax/parallax-Info.plist";
@@ -303,6 +304,7 @@
 		C39B2D3C1579610A00BBEA55 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "parallax/parallax-Prefix.pch";
 				INFOPLIST_FILE = "parallax/parallax-Info.plist";
