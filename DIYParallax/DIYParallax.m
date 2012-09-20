@@ -10,7 +10,7 @@
 
 //
 
-#define UPDATE_INTERVAL 1.0f/90
+#define UPDATE_INTERVAL 1.0f/40
 #define OFFSET_MULTIPLIER 60.0f
 
 //
@@ -117,7 +117,6 @@
     {
         [motionManager stopDeviceMotionUpdates];
     }
-     motionManager = nil;
 }
 
 #pragma mark - Private methods
@@ -154,7 +153,7 @@
  *
  * @return  CGFloat
  */
-- (double)calculateTransformForAngle:(double)angle withDistance:(double)distance
+- (CGFloat)calculateTransformForAngle:(CGFloat)angle withDistance:(CGFloat)distance
 {
     return angle * distance;
 }
