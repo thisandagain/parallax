@@ -33,15 +33,28 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Init layers object
-        layers              = [[NSMutableArray alloc] init];
-        
-        // Init motion manager
-        motionManager       = [[CMMotionManager alloc] init];
-        motionManager.deviceMotionUpdateInterval = UPDATE_INTERVAL;
+        [self setup];
     }
     
     return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder]) {
+        [self setup];
+    }
+    return self;
+}
+
+- (void) setup
+{
+    // Init layers object
+    layers              = [[NSMutableArray alloc] init];
+    
+    // Init motion manager
+    motionManager       = [[CMMotionManager alloc] init];
+    motionManager.deviceMotionUpdateInterval = UPDATE_INTERVAL;    
 }
 
 #pragma mark - Public methods
@@ -65,6 +78,7 @@
     NSString *bundlePath    = [[NSBundle mainBundle] bundlePath];
     UIImage *image          = [[UIImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", bundlePath, asset]];
     item.image              = image;
+    item.contentMode        = UIViewContentModeCenter;
     [self insertSubview:item atIndex:[layers count] - 1];
     
 }
@@ -141,7 +155,10 @@
         CGFloat y = [self calculateTransformForAngle:point.y withDistance:d];
         
         // Translate
-        view.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, OFFSET_MULTIPLIER * x, OFFSET_MULTIPLIER * y);
+        if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation))
+            view.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, OFFSET_MULTIPLIER * x, OFFSET_MULTIPLIER * y);
+        else
+            view.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, OFFSET_MULTIPLIER * y, OFFSET_MULTIPLIER * x);
     }
 }
 
